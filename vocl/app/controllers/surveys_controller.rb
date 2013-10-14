@@ -29,6 +29,7 @@ end
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
+    @survey.location = current_user.locations.first # TODO : when allowing multiple locations per user this needs find the right location
 
     respond_to do |format|
       if @survey.save
