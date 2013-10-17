@@ -74,6 +74,18 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, :user_id, questions_attributes: [:question_text, :id, :_destroy, answers_attributes: [:answer_text, :id, :_destroy]])
+      params.require(:survey).permit(:name, :user_id, 
+        questions_attributes: [:question_text, :id, :_destroy,
+         answers_attributes: [:answer_text, :id, :_destroy,
+          new_answers: [:answer_text, :id, :_destroy, :new_answers]
+          ],
+          new_questions: [:question_text, :id, :_destroy,
+         answers_attributes: [:answer_text, :id, :_destroy,
+          new_answers: [:answer_text, :id, :_destroy, :new_answers]
+          ]
+        ]
+        ]
+
+      )
     end
 end

@@ -1,12 +1,14 @@
-<div class="field">
+<div class="field question">
       <%= f.label :question_text, "Question" %><br>
       <%= f.text_field :question_text %>
-      <%= f.check_box :_destroy %>
-      <%= f.label :_destroy, "Remove Question" %>
-</div>
+      <%= f.hidden_field :_destroy %>
+      <%= link_to_function "remove", "remove_question(this)" %>
 
-<div>
-  <%= f.fields_for :answers do |builder| %>
-     <%= render 'answer_fields', :f => builder %>
-  <% end %>
+	<div class="answers">
+	  <%= f.fields_for :answers do |builder| %>
+	     <%= render 'answer_fields', :f => builder %>
+	  <% end %>
+	</div>
+
+	<p><%= link_to_add_fields "Add Answer", f, :answers %></p>
 </div>
